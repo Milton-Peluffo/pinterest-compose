@@ -1,4 +1,4 @@
-package com.tomildev.pinteres_compose
+package com.tomildev.pinterest_compose
 
 import org.junit.Test
 

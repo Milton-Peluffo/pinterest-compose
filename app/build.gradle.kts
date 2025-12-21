@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tomildev.pinteres_compose"
+    namespace = "com.tomildev.pinterest_compose"
     compileSdk {
         version = release(36)
     }

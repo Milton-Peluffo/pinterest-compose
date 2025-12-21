@@ -1,4 +1,4 @@
-package com.tomildev.pinteres_compose.ui.navigation
+package com.tomildev.pinterest_compose.ui.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 
