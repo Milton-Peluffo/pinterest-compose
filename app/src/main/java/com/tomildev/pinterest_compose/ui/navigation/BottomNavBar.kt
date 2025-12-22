@@ -2,6 +2,7 @@ package com.tomildev.pinterest_compose.ui.navigation
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -43,7 +44,7 @@ var selectedIndex by remember { mutableIntStateOf(0) }
         modifier = Modifier
             .height(95.dp)
         ,
-        contentColor = Color.Transparent,
+        contentColor = Color.White,
     ) {
         itemList.forEachIndexed { index, item ->
             PinterestCompose(navItem = item, isSelected = index == selectedIndex){
@@ -63,12 +64,15 @@ fun RowScope.PinterestCompose(navItem: NavItem,isSelected: Boolean, onItemclick:
         onClick = onItemclick,
         icon = {
             Icon(
+                modifier = Modifier.size(28.dp),
                 painter = painterResource(id = iconId), contentDescription = navItem.name
             )
-        }
+        },
+        colors = NavigationBarItemDefaults.colors(
+            selectedIconColor = Color.White,
+            unselectedIconColor = Color.White,
+            indicatorColor = Color.Transparent
+        )
     )
-    NavigationBarItemDefaults.colors(
-        selectedIconColor = Color.White,
-        indicatorColor = Color.Transparent
-    )
+
 }
