@@ -9,19 +9,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.tomildev.pinterest_compose.ui.data.model.Pin
+import com.tomildev.pinterest_compose.data.model.Pin
 
 @Composable
 fun PinterestCard(
-    pin: Pin = Pin(
-        id = 1,
-        imageUrl = "https://picsum.dev/400/300?grayscale=1",
-        height = 200
-    )
+    pin: Pin
+//    = Pin(
+//        id = 1,
+//        imageUrl = "https://picsum.dev/400/300?grayscale=1",
+//        height = 200
+//    )
 ) {
 
     Card(
-        shape = RoundedCornerShape(16),
+        shape = RoundedCornerShape(8),
 //        modifier = Modifier
 //            .fillMaxWidth()
 //            .size(100.dp)

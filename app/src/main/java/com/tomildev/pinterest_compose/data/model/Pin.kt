@@ -1,4 +1,4 @@
-package com.tomildev.pinterest_compose.ui.data.model
+package com.tomildev.pinterest_compose.data.model
 
 data class Pin(
     val id: Int,
