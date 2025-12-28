@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import com.tomildev.pinterest_compose.ui.components.PinterestCard
+import com.tomildev.pinterest_compose.ui.data.model.Pin
 import com.tomildev.pinterest_compose.ui.navigation.NavBar
 import com.tomildev.pinterest_compose.ui.theme.PinterescomposeTheme
 
@@ -21,6 +23,8 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     bottomBar = {NavBar()}
                 ) { innerPadding ->
+
+                    PinterestCard()
                 }
             }
         }
