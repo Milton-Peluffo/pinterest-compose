@@ -1,14 +1,22 @@
 package com.tomildev.pinterest_compose.ui.components
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.tomildev.pinterest_compose.R
 import com.tomildev.pinterest_compose.data.model.Pin
 
 @Composable
@@ -21,19 +29,32 @@ fun PinterestCard(
 //    )
 ) {
 
-    Card(
-        shape = RoundedCornerShape(8),
+    Column() {
+        Card(
+            shape = RoundedCornerShape(8),
 //        modifier = Modifier
 //            .fillMaxWidth()
 //            .size(100.dp)
-    ) {
-        AsyncImage(
-            model = pin.imageUrl,
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(pin.height.dp)
-        )
+        ) {
+            AsyncImage(
+                model = pin.imageUrl,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(pin.height.dp)
+            )
+        }
+        Row() {
+            //TODO: ImageDescription()
+            Box(modifier = Modifier.fillMaxWidth(),contentAlignment = Alignment.TopEnd){
+                Icon(
+                    painter = painterResource(R.drawable.ic_dots),
+                    contentDescription = null,
+                    Modifier.size(20.dp)
+                )
+            }
+        }
     }
+
 }
