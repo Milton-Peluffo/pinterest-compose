@@ -2,9 +2,9 @@ package com.tomildev.pinterest_compose.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -17,11 +17,11 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
     val pins = remember { ImagePins.getRandomPins() }
 
-    LazyVerticalGrid(
+    LazyVerticalStaggeredGrid(
         modifier = modifier,
-        columns = GridCells.Fixed(2),
+        columns = StaggeredGridCells.Fixed(2),
         contentPadding = PaddingValues(3.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
+        verticalItemSpacing = 4.dp,
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         items(pins) { pin ->

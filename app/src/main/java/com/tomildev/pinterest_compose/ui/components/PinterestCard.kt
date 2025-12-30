@@ -3,6 +3,7 @@ package com.tomildev.pinterest_compose.ui.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -32,9 +33,8 @@ fun PinterestCard(
     Column() {
         Card(
             shape = RoundedCornerShape(8),
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .size(100.dp)
+            modifier = Modifier
+
         ) {
             AsyncImage(
                 model = pin.imageUrl,
@@ -42,19 +42,23 @@ fun PinterestCard(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(pin.height.dp)
             )
         }
+        Spacer(Modifier.height(4.dp))
         Row() {
             //TODO: ImageDescription()
-            Box(modifier = Modifier.fillMaxWidth(),contentAlignment = Alignment.TopEnd){
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp),
+                contentAlignment = Alignment.CenterEnd
+            ) {
                 Icon(
                     painter = painterResource(R.drawable.ic_dots),
                     contentDescription = null,
-                    Modifier.size(20.dp)
+                    Modifier.size(22.dp)
                 )
             }
         }
     }
-
 }
