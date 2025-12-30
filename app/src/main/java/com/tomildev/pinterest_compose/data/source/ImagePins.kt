@@ -28,10 +28,13 @@ object ImagePins {
     )
 
     fun getRandomPins(): List<Pin> {
-        return List(50) { index ->
+
+        val shuffledUrls = imageUrls.shuffled()
+
+        return List(20) { index ->
             Pin(
                 id = index,
-                imageUrl = imageUrls.random(),
+                imageUrl = shuffledUrls[index % shuffledUrls.size],
                 height = (150..320).random()
             )
         }
