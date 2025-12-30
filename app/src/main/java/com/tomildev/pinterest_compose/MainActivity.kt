@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import com.tomildev.pinterest_compose.ui.components.TopBar
 import com.tomildev.pinterest_compose.ui.navigation.NavBar
 import com.tomildev.pinterest_compose.ui.screens.HomeScreen
 import com.tomildev.pinterest_compose.ui.theme.PinterescomposeTheme
@@ -21,6 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PinterescomposeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize(),
+                    topBar = {TopBar()},
                     bottomBar = {NavBar()}
                 ) { innerPadding ->
                     HomeScreen(modifier = Modifier.padding(innerPadding))
