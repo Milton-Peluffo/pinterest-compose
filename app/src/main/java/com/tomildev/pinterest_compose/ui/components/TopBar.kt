@@ -6,8 +6,10 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,6 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -47,6 +51,9 @@ fun TopBar(modifier: Modifier = Modifier) {
         "Fauna",
         "Digital Art",
     )
+
+    var selectedIndex by remember { mutableIntStateOf(0) }
+
     TopAppBar(
         modifier = modifier
             .height(60.dp),
@@ -57,31 +64,40 @@ fun TopBar(modifier: Modifier = Modifier) {
             ) {
                 itemsIndexed(topBartitles) { index, title ->
 
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        var selectedIndex by remember { mutableIntStateOf(0) }
+                    var textWidth by remember { mutableIntStateOf(0) }
+
+                    Column(
+                        modifier
+                            .height(50.dp)
+                            .fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
                         Text(
                             text = title,
                             fontSize = 15.sp,
                             color = Color.White,
                             fontWeight = FontWeight.SemiBold,
-                            modifier = Modifier.clickable(
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = null,
-                            )
-                            {
-                                selectedIndex = index
-                            }
+                            modifier = Modifier
+                                .onSizeChanged {
+                                    textWidth = it.width
+                                }
+                                .clickable(
+                                    interactionSource = remember { MutableInteractionSource() },
+                                    indication = null,
+                                )
+                                {
+                                    selectedIndex = index
+                                }
                         )
                         if (index == selectedIndex) {
-                            Box(Modifier
-                                .height(2.dp)
-                                .size(50.dp, 2.dp)
-                                .background(Color.White)
+                            Box(
+                                Modifier
+                                    .height(2.dp)
+                                    .width(with(LocalDensity.current) { textWidth.toDp()})
+                                    .background(Color.White)
                             )
                         }
-
                     }
-
                 }
                 item {
                     VerticalDivider(
