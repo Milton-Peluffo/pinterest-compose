@@ -1,6 +1,7 @@
 package com.tomildev.pinterest_compose.ui.components.overflow.PinOverflow
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,27 +40,27 @@ fun PinOveflowMenu(
 
     val itemList = listOf(
         PinOverflowItem(
-            icon = R.drawable.ic_search,
+            icon = R.drawable.ic_pin,
             title = "Guardar"
         ),
         PinOverflowItem(
-            icon = R.drawable.ic_search,
+            icon = R.drawable.ic_share,
             title = "Compartir"
         ),
         PinOverflowItem(
-            icon = R.drawable.ic_search,
+            icon = R.drawable.ic_download,
             title = "Descargar imagen"
         ),
         PinOverflowItem(
-            icon = R.drawable.ic_search,
+            icon = R.drawable.ic_heart,
             title = "Ver mas como esto"
         ),
         PinOverflowItem(
-            icon = R.drawable.ic_search,
+            icon = R.drawable.ic_eye_slash,
             title = "Ver menos como esto"
         ),
         PinOverflowItem(
-            icon = R.drawable.ic_search,
+            icon = R.drawable.ic_circle_slash,
             title = "Reportar Pin",
             subtitle = "Infrige las Direcrices para la comunidad de Pinterest"
         )
@@ -80,7 +82,7 @@ fun PinOveflowMenu(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(400.dp)
+                    .height(500.dp)
                     .align(Alignment.BottomCenter),
                 shape = RoundedCornerShape(topStart = 35.dp, topEnd = 35.dp),
                 colors = CardDefaults.cardColors(
@@ -92,12 +94,16 @@ fun PinOveflowMenu(
                     Icon(
                         painter = painterResource(R.drawable.ic_close),
                         contentDescription = null,
-                        Modifier.size(35.dp)
-                            .clickable(onClick = {onDismiss()})
-                        ,
+                        Modifier
+                            .size(35.dp)
+                            .clickable(
+                                onClick = { onDismiss() },
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ),
                         tint = Color.White,
                     )
-                    Spacer(Modifier.padding(vertical = 10.dp))
+                    Spacer(Modifier.padding(vertical = 16.dp))
                     itemList.forEachIndexed { index, item ->
                         Row(
                             Modifier
@@ -108,10 +114,10 @@ fun PinOveflowMenu(
                             Icon(
                                 painter = painterResource(item.icon),
                                 contentDescription = item.title,
-                                Modifier.size(25.dp),
+                                Modifier.size(20.dp),
                                 tint = Color.White
                             )
-                            Spacer(Modifier.padding(horizontal = 5.dp))
+                            Spacer(Modifier.padding(horizontal = 8.dp))
                             Column(verticalArrangement = Arrangement.Top) {
                                 Text(
                                     text = item.title,

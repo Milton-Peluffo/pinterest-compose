@@ -6,24 +6,19 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tomildev.pinterest_compose.data.model.Pin
 import com.tomildev.pinterest_compose.data.source.ImagePins
 import com.tomildev.pinterest_compose.ui.components.PinterestCard
-import com.tomildev.pinterest_compose.ui.components.overflow.PinOverflow.PinOveflowMenu
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier, onShowPinMenu: (pin: Pin) -> Unit
+) {
 
     val pins = remember { ImagePins.getRandomPins() }
-
-    var showPinMenu by remember { mutableStateOf(false) }
-    var selectedPin by remember { mutableStateOf<Pin?>(null) }
 
     LazyVerticalStaggeredGrid(
         modifier = modifier,
@@ -36,17 +31,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             PinterestCard(
                 pin = pin,
                 onMoreClick = {
-                    selectedPin = pin
-                    showPinMenu = true
+                    onShowPinMenu(pin)
                 }
             )
         }
-    }
-
-    if (showPinMenu){
-        PinOveflowMenu(
-            pin = selectedPin!!,
-            onDismiss = {showPinMenu = false}
-        )
     }
 }

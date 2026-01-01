@@ -1,6 +1,7 @@
 package com.tomildev.pinterest_compose.ui.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -27,7 +29,7 @@ fun PinterestCard(
     onMoreClick: () -> Unit
 ) {
 
-    Column() {
+    Column {
         Card(
             shape = RoundedCornerShape(8),
             modifier = Modifier
@@ -42,7 +44,7 @@ fun PinterestCard(
             )
         }
         Spacer(Modifier.height(4.dp))
-        Row() {
+        Row {
             //TODO: ImageDescription()
             Box(
                 modifier = Modifier
@@ -53,8 +55,13 @@ fun PinterestCard(
                 Icon(
                     painter = painterResource(R.drawable.ic_dots),
                     contentDescription = null,
-                    Modifier.size(22.dp)
-                        .clickable(onClick = {onMoreClick()})
+                    Modifier
+                        .size(22.dp)
+                        .clickable(
+                            onClick = { onMoreClick() },
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        )
                 )
             }
         }
