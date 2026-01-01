@@ -1,5 +1,6 @@
 package com.tomildev.pinterest_compose.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,12 +23,8 @@ import com.tomildev.pinterest_compose.data.model.Pin
 
 @Composable
 fun PinterestCard(
-    pin: Pin
-//    = Pin(
-//        id = 1,
-//        imageUrl = "https://picsum.dev/400/300?grayscale=1",
-//        height = 200
-//    )
+    pin: Pin,
+    onMoreClick: () -> Unit
 ) {
 
     Column() {
@@ -57,6 +54,7 @@ fun PinterestCard(
                     painter = painterResource(R.drawable.ic_dots),
                     contentDescription = null,
                     Modifier.size(22.dp)
+                        .clickable(onClick = {onMoreClick()})
                 )
             }
         }

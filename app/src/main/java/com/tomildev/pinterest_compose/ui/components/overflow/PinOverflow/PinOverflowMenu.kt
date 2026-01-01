@@ -1,5 +1,6 @@
 package com.tomildev.pinterest_compose.ui.components.overflow.PinOverflow
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,17 +22,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tomildev.pinterest_compose.R
+import com.tomildev.pinterest_compose.data.model.Pin
 import com.tomildev.pinterest_compose.ui.theme.Gray
 
 //expanded: Boolean, onDismiss: () -> Unit
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PinOveflowMenu() {
+fun PinOveflowMenu(
+    pin: Pin,
+    onDismiss: () -> Unit
+) {
 
     val itemList = listOf(
         PinOverflowItem(
@@ -89,7 +92,9 @@ fun PinOveflowMenu() {
                     Icon(
                         painter = painterResource(R.drawable.ic_close),
                         contentDescription = null,
-                        Modifier.size(35.dp),
+                        Modifier.size(35.dp)
+                            .clickable(onClick = {onDismiss()})
+                        ,
                         tint = Color.White,
                     )
                     Spacer(Modifier.padding(vertical = 10.dp))
@@ -128,12 +133,13 @@ fun PinOveflowMenu() {
                 }
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_close),
-                    contentDescription = null,
-                    Modifier.size(100.dp),
-                    tint = Color.White,
-                )
+
+//                AsyncImage(
+//                    model = "https://picsum.photos/400/600",
+//                    contentDescription = null,
+//                    contentScale = ContentScale.Crop,
+//                    modifier = Modifier
+//                )
                 Text(
                     "Este Pin está  inspirado en tu actividad reciente",
                     fontSize = 13.sp,
