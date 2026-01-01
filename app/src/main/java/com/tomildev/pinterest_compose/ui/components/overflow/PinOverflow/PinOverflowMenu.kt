@@ -36,28 +36,23 @@ fun PinOveflowMenu() {
     val itemList = listOf(
         PinOverflowItem(
             icon = R.drawable.ic_search,
-            title = "Guardar",
-            subtitle = null
+            title = "Guardar"
         ),
         PinOverflowItem(
             icon = R.drawable.ic_search,
-            title = "Compartir",
-            subtitle = null
+            title = "Compartir"
         ),
         PinOverflowItem(
             icon = R.drawable.ic_search,
-            title = "Descargar imagen",
-            subtitle = null
+            title = "Descargar imagen"
         ),
         PinOverflowItem(
             icon = R.drawable.ic_search,
-            title = "Ver mas como esto",
-            subtitle = null
+            title = "Ver mas como esto"
         ),
         PinOverflowItem(
             icon = R.drawable.ic_search,
-            title = "Ver menos como esto",
-            subtitle = null
+            title = "Ver menos como esto"
         ),
         PinOverflowItem(
             icon = R.drawable.ic_search,
@@ -66,55 +61,85 @@ fun PinOveflowMenu() {
         )
     )
 
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        Card(
-            modifier = Modifier
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+
+        Box(
+            Modifier
                 .fillMaxWidth()
-                .height(400.dp),
-            shape = RoundedCornerShape(topStart = 35.dp, topEnd = 35.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Gray
-            )
+                .height(450.dp),
+            contentAlignment = Alignment.TopCenter
         ) {
 
-            Column(modifier = Modifier.padding(vertical = 5.dp, horizontal = 20.dp)) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_close),
-                    contentDescription = null,
-                    Modifier.size(35.dp),
-                    tint = Color.White,
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(400.dp)
+                    .align(Alignment.BottomCenter),
+                shape = RoundedCornerShape(topStart = 35.dp, topEnd = 35.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Gray
                 )
-                Spacer(Modifier.padding(vertical = 10.dp))
-                itemList.forEachIndexed { index, item ->
-                    Row(
-                        Modifier.fillMaxWidth().padding(vertical = 6.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            painter = painterResource(item.icon),
-                            contentDescription = item.title,
-                            Modifier.size(25.dp),
-                            tint = Color.White
-                        )
-                        Spacer(Modifier.padding(horizontal = 5.dp))
-                        Column(verticalArrangement = Arrangement.Top) {
-                            Text(
-                                text = item.title,
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White
+            ) {
+
+                Column(modifier = Modifier.padding(vertical = 15.dp, horizontal = 15.dp)) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_close),
+                        contentDescription = null,
+                        Modifier.size(35.dp),
+                        tint = Color.White,
+                    )
+                    Spacer(Modifier.padding(vertical = 10.dp))
+                    itemList.forEachIndexed { index, item ->
+                        Row(
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 6.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                painter = painterResource(item.icon),
+                                contentDescription = item.title,
+                                Modifier.size(25.dp),
+                                tint = Color.White
                             )
-                            item.subtitle?.let {
+                            Spacer(Modifier.padding(horizontal = 5.dp))
+                            Column(verticalArrangement = Arrangement.Top) {
                                 Text(
-                                    text = it,
-                                    fontSize = 14.sp,
-                                    fontWeight = FontWeight.Normal,
+                                    text = item.title,
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
                                     color = Color.White
                                 )
+                                item.subtitle?.let {
+                                    Text(
+                                        text = it,
+                                        fontSize = 15.sp,
+                                        fontWeight = FontWeight.Normal,
+                                        color = Color.White
+                                    )
+                                }
                             }
                         }
                     }
                 }
+            }
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_close),
+                    contentDescription = null,
+                    Modifier.size(100.dp),
+                    tint = Color.White,
+                )
+                Text(
+                    "Este Pin está  inspirado en tu actividad reciente",
+                    fontSize = 13.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold
+                )
             }
         }
     }
